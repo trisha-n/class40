@@ -38,6 +38,10 @@ class Game {
     car2.addImage("car2", car2img);
     car3.addImage("car3", car3img);
     car4.addImage("car4", car4img);
+    car1.visible = false ;
+    car2.visible = false;
+    car3.visible = false;
+    car4.visible = false; 
   }
 
   play(){
@@ -48,6 +52,10 @@ class Game {
     if(allPlayers !== undefined){
       background("#c68767");
       image(trackimg, 0, -displayHeight * 4 , displayWidth, displayHeight*5)
+      car1.visible = true;
+      car2.visible = true;
+      car3.visible = true;
+      car4.visible = true;
       //var display_position = 100;
       
       //index of the array
@@ -69,7 +77,9 @@ class Game {
         cars[index-1].y = y;
 
         if (index === player.index){
-          cars[index - 1].shapeColor = "red";
+          stroke(10);
+          fill("red");
+          ellipse(x,  y, 60, 60);
           camera.position.x = displayWidth/2;
           camera.position.y = cars[index-1].y
         }
@@ -78,6 +88,8 @@ class Game {
         //text(allPlayers[plr].name + ": " + allPlayers[plr].distance, 120,display_position)
       }
 
+    }else{
+      background("#c68767")
     }
 
     if(keyIsDown(UP_ARROW) && player.index !== null && player.distance < 4300){
